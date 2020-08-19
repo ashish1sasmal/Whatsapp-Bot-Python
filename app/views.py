@@ -9,7 +9,6 @@ from django.views.generic import View
 from .mixin import HttpResponseMixin
 
 class Message(HttpResponseMixin,View):
-    def get(self,request,*args,**kwargs):
+    def post(self,request,*args,**kwargs):
         message = "Hello! Ashish"
         return HttpResponse(message)
-    
