@@ -2,8 +2,8 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from django.http import HttpResponse,JsonResponse
-import json
+from django.http import HttpResponse
+# import json
 
 from django.views.generic import View
 from .mixin import HttpResponseMixin
@@ -11,7 +11,7 @@ from .mixin import HttpResponseMixin
 from twilio.twiml.messaging_response import MessagingResponse
 
 # from twilio.rest import Client
-import os
+# import os
 
 # account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
 # auth_token = os.environ.get('TWILIO_AUTH_TOKEN')
