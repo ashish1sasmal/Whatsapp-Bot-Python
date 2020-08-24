@@ -19,7 +19,7 @@ from django.urls import path
 from app import views
 
 urlpatterns = [
-    path('',views.home),
+    # path('',views.home),
     path('admin/', admin.site.urls),
-    path('remind/',views.Message.as_view())
+    path('remind/',views.message)
 ]

@@ -32,12 +32,24 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 
-class Message(View):
-    def post(self,request,*args,**kwargs):
-        # message = "Hello! Ashish"
-        # send(request.POST.get('Body'))
-        msg = request.POST.get('Body')
+# class Message(View):
+#     def post(self,request,*args,**kwargs):
+#         # message = "Hello! Ashish"
+#         # send(request.POST.get('Body'))
+#         print("jj")
+#         msg = request.values.get('Body', '').lower()
+#         resp = MessagingResponse()
+#         res.message()
+#         print(msg)
+#         return str(resp)
+
+@csrf_exempt
+def message(request):
+    # if request.method == "POST":
+        print("jj")
+        ms = request.POST.get('Body', '').lower()
         resp = MessagingResponse()
-        res.message()
-        print(msg)
-        return str(resp)
+        msg = resp.message()
+        msg.body(ms)
+        print(ms)
+        return HttpResponse(str(resp))
