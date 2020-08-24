@@ -51,5 +51,6 @@ def message(request):
         resp = MessagingResponse()
         msg = resp.message()
         msg.body(ms)
+        msg.media('https://thumbs.gfycat.com/EqualTotalBlackfly-size_restricted.gif')
         print(ms)
         return HttpResponse(str(resp))
