@@ -3,51 +3,36 @@ from django.shortcuts import render
 # Create your views here.
 
 from django.http import HttpResponse
-# import json
-
 from django.views.generic import View
 from .mixin import HttpResponseMixin
-
 from twilio.twiml.messaging_response import MessagingResponse
-
-# from twilio.rest import Client
-# import os
-
-# account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
-# auth_token = os.environ.get('TWILIO_AUTH_TOKEN')
-#
-# def send(msg):
-#     client = Client(account_sid, auth_token)
-#     message = client.messages.create(
-#           from_='whatsapp:+14155238886',
-#           body=msg,
-#           to='whatsapp:+919911698098'
-#                               )
-#     print("send!")
+import requests
 
 def home(request):
     return HttpResponse("Hello World!")
 
 from django.views.decorators.csrf import csrf_exempt
+import requests
 
-
-
-# class Message(View):
-#     def post(self,request,*args,**kwargs):
-#         # message = "Hello! Ashish"
-#         # send(request.POST.get('Body'))
-#         print("jj")
-#         msg = request.values.get('Body', '').lower()
-#         resp = MessagingResponse()
-#         res.message()
-#         print(msg)
-#         return str(resp)
+def weather(lat,long):
+    url=f"http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={long}&appid=92c0450a31e8cb64bf9247d0370fcec2"
+    r = requests.get(url = url)
+    data = r.json()['main']
+    s=f"""
+        CURR TEMP: {round(data['temp']-273.15,2)} °C,\n
+        FEELS LIKE: {round(data['feels_like']-273.15,2)} °C,\n
+        MIN TEMP: {round(data['temp_min']-273.15,2)} °C,\n
+        MAX TEMP: {round(data['temp_max']-273.15,2)} °C, \n
+        PRESSURE: {data['pressure']}, \n
+        HUMIDITY: {data['humidity']}
+    """
+    return(s)
 
 @csrf_exempt
 def message(request):
     # if request.method == "POST":
         print("jj")
-        ms = request.POST.get('Body', '').lower()
+        ms = weather(28.7041,77.1025)
         resp = MessagingResponse()
         msg = resp.message()
         msg.body(ms)
