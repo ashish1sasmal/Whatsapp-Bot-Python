@@ -21,5 +21,5 @@ from app import views
 urlpatterns = [
     # path('',views.home),
     path('admin/', admin.site.urls),
-    path('remind/',views.message)
+    path('',views.message)
 ]
