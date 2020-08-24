@@ -25,11 +25,19 @@ import os
 #                               )
 #     print("send!")
 
-class Message(HttpResponseMixin,View):
+def home(request):
+    return HttpResponse("Hello World!")
+
+from django.views.decorators.csrf import csrf_exempt
+
+
+
+class Message(View):
     def post(self,request,*args,**kwargs):
         # message = "Hello! Ashish"
         # send(request.POST.get('Body'))
-        msg = request.form.get('Body')
+        msg = request.POST.get('Body')
         resp = MessagingResponse()
         res.message()
+        print(msg)
         return str(resp)
