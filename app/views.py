@@ -19,12 +19,12 @@ def weather(lat,long):
     r = requests.get(url = url)
     data = r.json()['main']
     s=f"""
-        CURR TEMP: {round(data['temp']-273.15,2)} °C,
-FEELS LIKE: {round(data['feels_like']-273.15,2)} °C,
-MIN TEMP: {round(data['temp_min']-273.15,2)} °C,
-MAX TEMP: {round(data['temp_max']-273.15,2)} °C,
-PRESSURE: {data['pressure']},
-HUMIDITY: {data['humidity']}
+        *CURR TEMP:* {round(data['temp']-273.15,2)} °C,
+*FEELS LIKE:* {round(data['feels_like']-273.15,2)} °C,
+*MIN TEMP:* {round(data['temp_min']-273.15,2)} °C,
+*MAX TEMP:* {round(data['temp_max']-273.15,2)} °C,
+*PRESSURE:* {data['pressure']},
+*HUMIDITY:* {data['humidity']}
     """
     return(s)
 
