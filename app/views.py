@@ -18,8 +18,8 @@ def weather(lat,long):
     url=f"http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={long}&appid=92c0450a31e8cb64bf9247d0370fcec2"
     r = requests.get(url = url)
     data = r.json()['main']
-    s=f"""
-            CURR TEMP: {round(data['temp']-273.15,2)} °C,
+    s=f"""\n
+        CURR TEMP: {round(data['temp']-273.15,2)} °C,
         FEELS LIKE: {round(data['feels_like']-273.15,2)} °C,
         MIN TEMP: {round(data['temp_min']-273.15,2)} °C,
         MAX TEMP: {round(data['temp_max']-273.15,2)} °C,
